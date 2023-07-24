@@ -76,27 +76,27 @@ nav ul li a, nav ul li span, header .action {
   border: 1px solid #377ba8;
 }
 
-.post > header {
+.study_set > header {
   display: flex;
   align-items: flex-end;
   font-size: 0.85em;
 }
 
-.post > header > div:first-of-type {
+.study_set > header > div:first-of-type {
   flex: auto;
 }
 
-.post > header h1 {
+.study_set > header h1 {
   font-size: 1.5em;
   margin-bottom: 0;
 }
 
-.post .about {
+.study_set .about {
   color: slategray;
   font-style: italic;
 }
 
-.post .body {
+.study_set .body {
   white-space: pre-line;
 }
 

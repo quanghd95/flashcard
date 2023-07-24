@@ -1,12 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="../../static/style.css">
-</head> 
+{% extends 'base.html' %}
 
-<body>
-        
-    <button type="button" class="button">Create study set</button>
-</body>
+{% block header %}
+  <h1>{% block title %}Study Set{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('study_set.create') }}">New</a>
+  {% endif %}
+{% endblock %}
 
-</html>
+{% block content %}
+  {% for study_set in study_sets %}
+    <article class="study_set">
+      <header>
+        <div>
+          <h1>{{ study_set['title'] }}</h1>
+          <div class="about">by {{ study_set['username'] }} on {{ study_set['created_at'].strftime('%Y-%m-%d') }}</div>
+        </div>
+        {% if g.user['id'] == study_set['author_id'] %}
+          <a class="action" href="{{ url_for('study_set.update', id=study_set['id']) }}">Edit</a>
+        {% endif %}
+      </header>
+      <p class="body">{{ study_set['description'] }}</p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
