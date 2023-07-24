@@ -1,24 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    
-    <link rel="stylesheet" href="../../static/style.css">
-</head>
-<section class="content">
-<body>
-    
-    <form method="post">
-        <label for="title" >Title</label>
-        <input name="title" id="title" required>
-        <label for="description">Desription</label>
-        <input type="desc" name="desc" id="desc" required>
-        <label for="level">Level</label>
-        <input type="level" name="level" id="level" required>
-        <input type="submit" value="Update study set"class="button1">
-       
-      </form>
+{% extends 'base.html' %}
 
+{% block header %}
+  <h1>{% block title %}Edit "{{ study_set['title'] }}"{% endblock %}</h1>
+{% endblock %}
 
-</body>
-</section>
-</html>
+{% block content %}
+<form method="post">
+    <label for="title" >Title</label>
+    <input name="title" id="title" value="{{ request.form['title'] or study_set['title'] }}" required>
+    <label for="description">Desription</label>
+    <textarea name="description" id="description" required>{{ request.form['description'] or study_set['description'] }}</textarea>
+    <label for="level">Level</label>
+    <input name="level" id="level" value="{{ request.form['level'] or study_set['level'] }}" required>
+    <input type="submit" value="Update study set">
+</form>
+<hr>
+<form action="{{ url_for('study_set.delete', id=study_set['id']) }}" method="post">
+  <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+</form>
+{% endblock %}
