@@ -18,6 +18,9 @@ py -3 -m venv .venv
 
 . .venv/Scripts/activate
 
+- Install flask
+
+pip install Flask
 
 - init-db(one time)
 
