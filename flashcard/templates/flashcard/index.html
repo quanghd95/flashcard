@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{study_set['title']}}{% endblock %}</h1>
+  {% if g.user %}
+    <a href="{{ url_for('flashcard.create', study_set_id=study_set['id']) }}">New</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% for flashcard in flashcards %}
+    <article class="study_set">
+      <header>
+        <div>
+          <h1>{{ flashcard['term'] }}</h1>
+          <div class="about">by {{ flashcard['username'] }} on {{ flashcard['created_at'].strftime('%Y-%m-%d') }}</div>
+        </div>
+        {% if g.user['id'] == flashcard['author_id'] %}
+          <a class="action" href="{{ url_for('flashcard.update', study_set_id=study_set['id'], id=flashcard['id']) }}">Edit</a>
+        {% endif %}
+      </header>
+      <p class="body">{{ flashcard['definition'] }}</p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

@@ -10,6 +10,8 @@ from flask import session
 from flask import url_for
 from werkzeug.security import check_password_hash
 from werkzeug.security import generate_password_hash
+from datetime import datetime
+
 
 from flashcard.db import get_db
 
@@ -55,7 +57,7 @@ def register():
         password = request.form["password"]
         email = request.form["email"]
         if request.form["birthdate"]:
-            birthdate = request.form["birthdate"].date()
+            birthdate = datetime.strptime(request.form["birthdate"], '%Y-%m-%d')
         else:
             birthdate = None
         db = get_db()

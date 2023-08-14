@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit "{{ flashcard['term'] }}"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    <label for="term" >Term</label>
+    <input name="term" id="term" value="{{ request.form['term'] or flashcard['term'] }}" required>
+    <label for="definition">Definition</label>
+    <textarea name="definition" id="definition" required>{{ request.form['definition'] or flashcard['definition'] }}</textarea>
+    <label for="image_url">Image_url</label>
+    <input name="image_url" id="image_url" value="{{ request.form['image_url'] or flashcard['image_url'] }}">
+    <input type="submit" value="Update flashcard">
+</form>
+<hr>
+<form action="{{ url_for('flashcard.delete', id=flashcard['id']) }}" method="post">
+  <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+</form>
+{% endblock %}
