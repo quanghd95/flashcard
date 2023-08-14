@@ -8,12 +8,39 @@
 {% endblock %}
 
 {% block content %}
+  <div class="flashcard">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+      <ol class="carousel-indicators">
+        {% for flashcard in flashcards %}
+        <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" class="{% if loop.index0 == 0 %} active {% endif %}"></li>
+        {% endfor %}
+      </ol>
+
+      <div class="carousel-inner">
+        {% for flashcard in flashcards %}
+          <div class="carousel-item {% if flashcard == flashcards[0] %} active {% endif %}">
+            <div class="flippable-card">
+              <div class="front">{{ flashcard['term'] }}</div>
+              <div class="back">{{ flashcard['definition'] }}</div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
   {% for flashcard in flashcards %}
     <article class="study_set">
       <header>
         <div>
           <h1>{{ flashcard['term'] }}</h1>
-          <div class="about">by {{ flashcard['username'] }} on {{ flashcard['created_at'].strftime('%Y-%m-%d') }}</div>
         </div>
         {% if g.user['id'] == flashcard['author_id'] %}
           <a class="action" href="{{ url_for('flashcard.update', study_set_id=study_set['id'], id=flashcard['id']) }}">Edit</a>

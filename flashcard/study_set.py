@@ -19,9 +19,6 @@ def get_study_set(id, check_author=True):
     if study_set is None:
         abort(404, f"Study set id {id} doesn't exist.")
 
-    if check_author and study_set['author_id'] != g.user['id']:
-        abort(403)
-
     return study_set
 
 @bp.route('/')
