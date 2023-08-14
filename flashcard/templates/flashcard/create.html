@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Flash card{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="term" >Term</label>
+    <input name="term" id="term" value="{{ request.form['term'] }}" required>
+    <label for="definition">Definition</label>
+    <textarea name="definition" id="definition" required>{{ request.form['definition'] }}</textarea>
+    <label for="image_url">Image_url</label>
+    <input name="image_url" id="image_url" value="{{ request.form['image_url'] }}">
+    <input type="submit" value="Create flash card">
+  </form>
+{% endblock %}

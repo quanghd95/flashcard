@@ -46,5 +46,7 @@ def create_app(test_config=None):
     from . import study_set
     app.register_blueprint(study_set.bp)
     app.add_url_rule('/', endpoint='index')
+    from . import flashcard
+    app.register_blueprint(flashcard.bp)
 
     return app
