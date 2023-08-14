@@ -1,6 +1,7 @@
 <!doctype html>
 <title>{% block title %}{% endblock %} - Flashcard</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='maxcdn.bootstrapcdn.com_bootstrap_4.5.2_css_bootstrap.min.css') }}">
 <nav>
   <h1><a href="{{ url_for('index') }}">Flashcard</a></h1>
   <ul>
@@ -22,3 +23,7 @@
   {% endfor %}
   {% block content %}{% endblock %}
 </section>
+<script src="{{ url_for('static', filename='code.jquery.com_jquery-3.5.1.slim.min.js') }}"></script>
+<script src="{{ url_for('static', filename='cdn.jsdelivr.net_npm_@popperjs_core@2.11.6_dist_umd_popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='maxcdn.bootstrapcdn.com_bootstrap_4.5.2_js_bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>

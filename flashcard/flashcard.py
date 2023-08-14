@@ -34,7 +34,7 @@ def index(study_set_id):
         ' FROM flashcard f JOIN study_set st ON f.study_set_id = st.id JOIN user u ON st.author_id = u.id'
         ' WHERE study_set_id = ? ORDER BY f.created_at DESC', (study_set['id'],)
     ).fetchall()
-    return render_template('flashcard/index.html', flashcards=flashcards, study_set=study_set )
+    return render_template('flashcard/index.html', flashcards=flashcards, study_set=study_set)
 
 @bp.route('/<int:study_set_id>/create', methods=('GET', 'POST'))
 @login_required
